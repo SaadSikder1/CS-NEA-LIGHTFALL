@@ -1,6 +1,4 @@
 using UnityEngine;
-
-// Adding ", IDamageable" right here is the magic key that makes your pure Gun logic work!
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] private float maxHealth = 100f;

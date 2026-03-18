@@ -9,19 +9,19 @@ public class PlayerCrouch : MonoBehaviour
     public float standHeight = 2f;
     public float crouchHeight = 1.1f;
 
-    // A boolean flag tracking the current physical state of the player entity
+    //tracking the current physical state of the player entity
     public bool isCrouching = false;
 
     void Start()
     {
-        // Initialise by caching the component reference to avoid expensive lookups every frame
+        // Initialise by caching the component reference to avoid processing power expensive lookups every frame
         cc = GetComponent<CharacterController>();
     }
 
     // Public subroutine called by the central PlayerController script
     public void HandleCrouch()
     {
-        // Event-driven input handling: detects the exact frame the control key is pressed down
+        // detects the exact frame the control key is pressed down
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             // Update the state flag and modify the physical height of the collision volume

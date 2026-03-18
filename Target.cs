@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// Implementing 'IDamageable' acts as an interface, ensuring this class provides a specific behaviour.
+// Implementing 'IDamageable' acts as an interface
 // The 'partial' keyword allows the class definition to be split across multiple files if needed.
 public partial class Target : MonoBehaviour, IDamageable
 {

@@ -11,24 +11,21 @@ public class PlayerJump : MonoBehaviour
 
     void Start()
     {
-        // Initialise dependencies by caching the required components, 
         // allowing this script to read states and trigger behaviours in others.
         move = GetComponent<PlayerMovement>();
         cc = GetComponent<CharacterController>();
     }
 
-    // Public subroutine executed every frame via the central PlayerController hub
+    // Public subroutine executed every frame via PlayerController
     public void HandleJump()
     {
-        // Guard clause: immediately exit the function if the player is currently mid-air.
-        // This is a crucial state check that prevents unintended behaviour like double-jumping.
+        // Guard clause that prevents double jump
         if (!cc.isGrounded) return;
 
-        // Polls the Unity Input Manager for the discrete 'Jump' action (typically the Spacebar)
+        // Asks the Unity Input Manager for the spacebar input
         if (Input.GetButtonDown("Jump"))
         {
-            // Delegates the actual modification of the vertical velocity vector 
-            // to the dedicated movement module
+            // Delegates the actual modification of the vertical velocity vector
             move.SetVertical(jumpForce);
         }
     }

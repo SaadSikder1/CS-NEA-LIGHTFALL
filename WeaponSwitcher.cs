@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class WeaponSwitcher : MonoBehaviour
 {
-    // Encapsulates the index of the currently active weapon. 
-    // Serialised to allow the default starting weapon to be set in the Unity Inspector.
+    // Takes the index of the currently active weapon
+    // Serialised to allow the default starting weapon to be set in Unity
     [SerializeField] private int selectedWeapon = 0;
 
     private void Start()
@@ -14,14 +14,14 @@ public class WeaponSwitcher : MonoBehaviour
 
     private void Update()
     {
-        // Store the current state locally to check against later, preventing redundant method calls
+        //Stores the current state locally to check against later
         int previousSelectedWeapon = selectedWeapon;
 
-        // Polling for direct numeric key inputs to jump to specific array indices
+        //Asks for direct numeric key inputs to jump to specific array indices
         // (Main Keyboard)
         if (Input.GetKeyDown(KeyCode.Alpha1)) selectedWeapon = 0;
         
-        // Ensures a second weapon actually exists in the hierarchy before attempting to switch to it
+        // Ensures a second weapon actually exists in the hierarchy before attempting to switch to it to pregvent errors
         if (Input.GetKeyDown(KeyCode.Alpha2) && transform.childCount >= 2) selectedWeapon = 1;
 
         // (Numpad)
@@ -42,7 +42,7 @@ public class WeaponSwitcher : MonoBehaviour
             else selectedWeapon--;
         }
 
-        // State comparison: only trigger the visual update if the selected index has actually changed
+        //only trigger the visual update if the selected index has actually changed
         if (previousSelectedWeapon != selectedWeapon)
         {
             SelectWeapon();
@@ -53,10 +53,10 @@ public class WeaponSwitcher : MonoBehaviour
     {
         int i = 0;
         
-        // Iterates through all child objects attached to this transform
+        //Iterates through all child objects attached to this transform
         foreach (Transform weapon in transform)
         {
-            // Enables the GameObject if its index matches the selected weapon, disables it otherwise
+            //Enables the GameObject if its index matches the selected weapon, disables it otherwise
             if (i == selectedWeapon)
                 weapon.gameObject.SetActive(true);
             else
