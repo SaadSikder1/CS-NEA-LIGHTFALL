@@ -13,7 +13,7 @@ public class MenuNavigationHandler : MonoBehaviour
 
     void Update()
     {
-        // SAFETY NET: If the player clicks the background and nothing is selected
+        //If the player clicks the background and nothing is selected
         if (EventSystem.current.currentSelectedGameObject == null)
         {
             // put the selection back on NewCharacterButton

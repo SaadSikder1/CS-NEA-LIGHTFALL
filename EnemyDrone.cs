@@ -1,7 +1,5 @@
 using UnityEngine;
 
-// Enforces a structural dependency, ensuring the game engine automatically 
-// attaches a Rigidbody component when this script is added to an object.
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyDrone : MonoBehaviour
 {
@@ -38,7 +36,7 @@ public class EnemyDrone : MonoBehaviour
 
     private void Update()
     {
-        // Guard clause: halt execution if the player reference is missing
+        // Guard clause
         if (player == null) return;
 
         timeSinceLastShot += Time.deltaTime;
@@ -54,22 +52,22 @@ public class EnemyDrone : MonoBehaviour
             // Vector subtraction yields the direction. Normalising it sets its magnitude to 1.
             Vector3 lookDirection = (aimTarget - transform.position).normalized;
             
-            // Restrict rotation on the Y-axis to prevent the drone from pitching up or down
+            // Restrict rotation on the Y-axis to prevent the drone from pitching up or down so it doesn't flip 
             lookDirection.y = 0;
             
             if (lookDirection != Vector3.zero)
             {
-                // Smoothly rotate the drone's body to face the player using Spherical Linear Interpolation
+                // Smoothly rotate the drone's body to face the player 
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * 5f);
             }
 
-            // The weapon muzzle tracks the player precisely on all axes
+            // The weapon muzzle tracks the player precisely on all axis-es??
             if (muzzle != null)
             {
                 muzzle.LookAt(aimTarget);
             }
 
-            // Check spatial and temporal conditions before executing the attack subroutine
+            // Check spaace and time conditions before executing the attack subroutine
             if (distanceToPlayer <= maxShootDistance && timeSinceLastShot >= (1f / fireRate))
             {
                 Shoot();
@@ -77,7 +75,7 @@ public class EnemyDrone : MonoBehaviour
         }
     }
 
-    // FixedUpdate operates on a consistent timer, making it essential for stable physics calculations
+    // FixedUpdate operates on a consistent timer
     private void FixedUpdate()
     {
         if (player == null) return;
@@ -91,7 +89,7 @@ public class EnemyDrone : MonoBehaviour
         }
         else
         {
-            // Nullify horizontal velocity while preserving any existing vertical momentum (like falling)
+            //Cancel horizontal velocity while preserving any existing vertical momentum (like falling)
             rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
         }
     }
@@ -119,7 +117,7 @@ public class EnemyDrone : MonoBehaviour
         }
         else
         {
-            // Apply standard gravitational acceleration if the ground is out of range
+            // Apply gravitational acceleration if the ground is out of range
             targetVelocity.y = rb.linearVelocity.y - 9.81f * Time.fixedDeltaTime;
         }
 
@@ -159,7 +157,7 @@ public class EnemyDrone : MonoBehaviour
 
     private void SpawnBulletTrail(Vector3 hitPoint)
     {
-        // Instantiation logic to generate the visual effect of the projectile
+        //generate the visual effect of the projectile
         if (bulletPrefab != null)
         {
             GameObject bulletObj = Instantiate(bulletPrefab, muzzle.position, Quaternion.identity);
@@ -171,7 +169,7 @@ public class EnemyDrone : MonoBehaviour
             }
             else
             {
-                // Failsafe memory management to destroy the object if the tracking script is missing
+                //destroy the object if the tracking script is missing
                 Destroy(bulletObj, 3f);
             }
         }

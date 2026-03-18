@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// Enforces a structural dependency, guaranteeing the presence of a CharacterController.
+// Enforces structural dependency which guarantees the presence of a CharacterController.
 // This prevents runtime errors if a developer forgets to add the required physics component.
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour

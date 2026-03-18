@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class BulletTrail : MonoBehaviour
 {
-    // Private fields to encapsulate the trajectory state of the projectile
+    // Private fields to track the trajectory state of the projectile
     private Vector3 startPosition;
     private Vector3 targetPosition;
     private float progress;
     private float timeToHit;
 
-    [Tooltip("Speed in metres per second")] // Updated to UK spelling
+    [Tooltip("Speed in metres per second")] 
     [SerializeField] private float speed = 100f;
 
     // Public setter method allowing external scripts to define the destination
@@ -19,7 +19,7 @@ public class BulletTrail : MonoBehaviour
 
     private void Start()
     {
-        // Initialise the starting coordinate upon instantiation
+        // Initialise the starting coordinate
         startPosition = transform.position;
         
         // Calculate the Euclidean distance between the start and target vectors
@@ -33,7 +33,7 @@ public class BulletTrail : MonoBehaviour
 
     private void Update()
     {
-        // Guard clause to handle edge cases where timeToHit is invalid or zero
+        // Guard clause
         if (timeToHit <= 0)
         {
             Destroy(gameObject);

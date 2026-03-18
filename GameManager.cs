@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement; // Useful if you want to restart
+using UnityEngine.SceneManagement; 
 
 public class GameManager : MonoBehaviour
 {
